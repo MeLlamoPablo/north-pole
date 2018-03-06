@@ -31,4 +31,8 @@ class User extends Authenticatable
     {
         return 'userName';
     }
+
+    public function files() {
+        return $this->belongsToMany("App\File");
+    }
 }

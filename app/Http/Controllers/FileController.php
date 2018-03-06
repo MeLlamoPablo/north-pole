@@ -16,7 +16,7 @@ class FileController extends Controller
 
     public function index()
     {
-        return view('files.index', ['files' => File::all()]);
+        return view('files.index', ['files' => Auth::user()->files()->get()]);
     }
 
     public function create()
@@ -28,8 +28,10 @@ class FileController extends Controller
     {
         $file = new File();
         $file->name = $request->name;
-        $file->user_id = Auth::user()->id;
         $file->save();
+
+        // TODO crear registro en la tabla de relación
+        // $file->user_id = Auth::user()->id;
 
         return redirect('/files');
     }
