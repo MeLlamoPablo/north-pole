@@ -14,11 +14,15 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/files', 'FileController@index')->name('allFiles');
-Route::get('/files/create', 'FileController@create');
-Route::post('/files', 'FileController@store')->name('storeFile');
+Route::get('/files/create', 'FileController@create')->name('createFile');
+Route::get('/files/{file}', 'FileController@show')->name('fileDetail');
+Route::get('/files/{file}/owners', 'FileOwnerController@index')->name('allFileOwners');
 
-Route::get('/users/{user}', 'UserController@index');
-Route::get('/profile', 'UserController@ownUser');
+Route::post('/files', 'FileController@store')->name('storeFile');
+Route::post('/files/{file}/owners', 'FileOwnerController@store')->name('storeFileOwner');
+
+Route::get('/users/{user}', 'UserController@index')->name('userDetail');
+Route::get('/profile', 'UserController@ownUser')->name('ownUserDetail');
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');

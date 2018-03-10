@@ -6,34 +6,36 @@
 			<div class="card">
 				<div class="card-header">Subir archivo</div>
 				<div class="card-body">
-					<form class="form-horizontal" method="POST" action="{{ route('storeFile') }}">
-						{{ csrf_field() }}
+					<div class="col-md-6">
+						<form
+							class="form-horizontal"
+							method="POST"
+						      action="{{ route('storeFile') }}"
+						>
+							{{ csrf_field() }}
 
-						<div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-							<label for="name" class="col-md-4 col-form-label">Nombre del
-								archivo</label>
-
-							<div class="col-md-6">
+							<div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+								<label for="file">Selecciona el archivo:</label>
 								<input
-									id="name"
-									type="text"
-									class="form-control"
-									name="name"
-									value="{{ old('name') }}"
-									required autofocus>
+									type="file"
+									class="form-control-file"
+									id="file"
+									name="file"
+									required
+								>
 
-								@if ($errors->has('name'))
+								@if ($errors->has('file'))
 									<span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('file') }}</strong>
                                     </span>
 								@endif
 							</div>
-						</div>
 
-						<button type="submit" class="btn btn-primary">
-							Enviar
-						</button>
-					</form>
+							<button type="submit" class="btn btn-primary">
+								Enviar
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

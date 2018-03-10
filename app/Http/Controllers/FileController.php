@@ -26,19 +26,22 @@ class FileController extends Controller
 
     public function store(StoreFile $request)
     {
+        $upload = $request->file("file");
+
+        dd($request);
+
         $file = new File();
-        $file->name = $request->name;
+        $file->name = $upload->getClientOriginalName();
         $file->save();
 
-        // TODO crear registro en la tabla de relación
-        // $file->user_id = Auth::user()->id;
+        $file->owners()->attach(Auth::user());
 
         return redirect('/files');
     }
 
     public function show(File $file)
     {
-        //
+        return view('files.detail', compact('file'));
     }
 
     public function edit(File $file)

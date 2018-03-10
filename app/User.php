@@ -33,6 +33,6 @@ class User extends Authenticatable
     }
 
     public function files() {
-        return $this->belongsToMany("App\File");
+        return $this->belongsToMany("App\File")->withTimestamps();
     }
 }

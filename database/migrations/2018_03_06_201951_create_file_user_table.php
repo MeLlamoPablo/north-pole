@@ -15,8 +15,8 @@ class CreateFileUserTable extends Migration
     {
         Schema::create('file_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('file_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('file_id')->unsigned();
             $table->timestamps();
         });
 

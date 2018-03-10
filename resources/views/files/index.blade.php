@@ -11,7 +11,11 @@
 					@else
 						<ul>
 							@foreach($files as $file)
-								<li>{{$file->name}}</li>
+								<li>
+									<a href="/files/{{$file->id}}">
+										{{$file->name}}
+									</a>
+								</li>
 							@endforeach
 						</ul>
 					@endif
