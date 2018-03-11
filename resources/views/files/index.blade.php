@@ -9,15 +9,28 @@
 					@if($files->isEmpty())
 						Todavía no has subido archivos
 					@else
-						<ul>
-							@foreach($files as $file)
-								<li>
-									<a href="/files/{{$file->id}}">
-										{{$file->name}}
-									</a>
-								</li>
-							@endforeach
-						</ul>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Tamaño</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($files as $file)
+									<tr>
+										<td>
+											<a href="/files/{{$file->id}}">
+												{{$file->name}}
+											</a>
+										</td>
+										<td>
+											{{$file->getSizeMB()}} MB
+										</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
 					@endif
 				</div>
 			</div>

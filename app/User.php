@@ -35,4 +35,8 @@ class User extends Authenticatable
     public function files() {
         return $this->belongsToMany("App\File")->withTimestamps();
     }
+
+    public function downloads() {
+        return $this->hasMany("App\FileDownload");
+    }
 }

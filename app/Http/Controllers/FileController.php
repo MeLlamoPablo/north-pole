@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\FileDownload;
+use App\Http\Requests\UpdateFile;
 use App\Http\Requests\StoreFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -28,15 +30,18 @@ class FileController extends Controller
     {
         $upload = $request->file("file");
 
-        dd($request);
-
         $file = new File();
         $file->name = $upload->getClientOriginalName();
+        $file->mimeType = $upload->getMimeType();
+        $file->size = $upload->getSize();
+
         $file->save();
 
         $file->owners()->attach(Auth::user());
 
-        return redirect('/files');
+        $upload->storeAs("userUploads", $file->id);
+
+        return redirect("/files/$file->id");
     }
 
     public function show(File $file)
@@ -44,18 +49,35 @@ class FileController extends Controller
         return view('files.detail', compact('file'));
     }
 
-    public function edit(File $file)
+    public function download(File $file)
     {
-        //
+        $download = new FileDownload();
+
+        $download->user_id = Auth::user()->id;
+        $download->file_id = $file->id;
+
+        $download->save();
+
+        return Storage::download(
+            "userUploads/$file->id",
+            $file->name,
+            [
+                "Content-Type" => $file->mimeType
+            ]
+        );
     }
 
-    public function update(Request $request, File $file)
+
+    public function update(UpdateFile $request, File $file)
     {
-        //
+        $file->name = $request->name;
+        $file->save();
+
+        return(json_encode($request->name));
     }
 
     public function destroy(File $file)
     {
-        //
+        $file->delete();
     }
 }

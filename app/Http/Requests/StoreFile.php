@@ -14,13 +14,14 @@ class StoreFile extends FormRequest
     public function rules()
     {
         return [
-            "file" => "required|max:102400"
+            "file" => "required|file|max:102400"
         ];
     }
 
     public function messages()
     {
         return [
+            "file.file" => "El archivo no es válido.",
             "file.required" => "Por favor, añade un archivo.",
             "file.size" => "El archivo es demasiado grande (max 100 MB).",
         ];

@@ -10,7 +10,8 @@
 						<form
 							class="form-horizontal"
 							method="POST"
-						      action="{{ route('storeFile') }}"
+							action="{{ route('storeFile') }}"
+							enctype="multipart/form-data"
 						>
 							{{ csrf_field() }}
 

@@ -1,22 +1,37 @@
+import React from "react"
+import ReactDOM from "react-dom"
+import FileDetail from "./components/FileDetail"
+import UserDetail from "./components/UserDetail"
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+require('./bootstrap')
 
-require('./bootstrap');
+const fileDetail = document.getElementById('react-file-detail')
+const userDetail = document.getElementById('react-user-detail')
 
-window.Vue = require('vue');
+if (fileDetail) {
+	ReactDOM.render(
+		<FileDetail
+			fileId={fileDetail.getAttribute("data-file-id")}
+			fileName={fileDetail.getAttribute("data-file-name")}
+			fileSizeMB={+fileDetail.getAttribute("data-file-size-mb")}
+			fileDownloadCount={+fileDetail.getAttribute("data-file-download-count")}
+		/>,
+		fileDetail
+	)
+}
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+if (userDetail) {
+	ReactDOM.render(
+		<UserDetail
+			isOwnUser={userDetail.getAttribute("data-is-own-user")}
+			userAvatar={userDetail.getAttribute("data-user-avatar")}
+			userName={userDetail.getAttribute("data-user-name")}
+			userEmail={userDetail.getAttribute("data-user-email")}
+			userFirstName={userDetail.getAttribute("data-user-first-name")}
+			userLastName={userDetail.getAttribute("data-user-last-name")}
+			userWebsite={userDetail.getAttribute("data-user-website")}
+			userAbout={userDetail.getAttribute("data-user-about")}
+		/>,
+		userDetail
+	)
+}

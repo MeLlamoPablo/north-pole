@@ -18,19 +18,21 @@
 					</ul>
 
 					<h4>Añadir propietario</h4>
-					<form
-						class="form-horizontal"
-						method="POST"
-						action="/files/{{$file->id}}/owners"
-					>
-						{{ csrf_field() }}
+					<div class="col-md-6">
 
-						<div class="{{ $errors->has('username') ? ' has-error' : '' }}">
-							<label for="username" class="col-md-4 col-form-label">
-								Nombre de usuario:
-							</label>
+						<form
+							class="form-horizontal"
+							method="POST"
+							action="/files/{{$file->id}}/owners"
+						>
+							{{ csrf_field() }}
 
-							<div class="col-md-6">
+							<div
+								class="form-group {{ $errors->has('username') ? ' has-error' : '' }}"
+							>
+								<label for="username" class="col-form-label">
+									Nombre de usuario:
+								</label>
 								<input
 									id="username"
 									type="text"
@@ -45,12 +47,13 @@
                                     </span>
 								@endif
 							</div>
-						</div>
 
-						<button type="submit" class="btn btn-primary">
-							Enviar
-						</button>
-					</form>
+							<button type="submit" class="btn btn-primary">
+								Enviar
+							</button>
+						</form>
+					</div>
+
 				</div>
 			</div>
 		</div>

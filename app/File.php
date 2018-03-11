@@ -11,4 +11,12 @@ class File extends Model
     public function owners() {
         return $this->belongsToMany("App\User")->withTimestamps();
     }
+
+    public function downloads() {
+        return $this->hasMany("App\FileDownload");
+    }
+
+    public function getSizeMB() {
+        return round($this->size / (1024 * 1024), 2);
+    }
 }

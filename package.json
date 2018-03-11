@@ -11,13 +11,18 @@
     },
     "devDependencies": {
         "axios": "^0.17",
+        "babel-preset-react": "^6.23.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "popper.js": "^1.12.9",
-        "uglifyjs-webpack-plugin": "^1.0.0-rc.0",
-        "vue": "^2.5.7"
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2",
+        "uglifyjs-webpack-plugin": "^1.0.0-rc.0"
+    },
+    "dependencies": {
+        "sweetalert2": "^7.15.1"
     }
 }
